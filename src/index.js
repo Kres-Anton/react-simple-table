@@ -26,21 +26,25 @@ class ReactSimpleTable extends React.Component {
   contentRef = React.createRef();
 
   componentDidMount() {
-    const { rows, header } = this.props.data;
-    const cellPerRow = header.length;
-
-    this.setState({ rows, cellPerRow });
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const shouldUpdateState =
-      this.state.rows.length !== nextProps.data.rows.length ||
-      this.state.rows !== nextProps.data.rows;
-    if (shouldUpdateState) {
-      const { rows, header } = nextProps;
+    if (this.props.data) {
+      const { rows, header } = this.props.data;
       const cellPerRow = header.length;
 
       this.setState({ rows, cellPerRow });
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.data) {
+      const shouldUpdateState =
+        this.state.rows.length !== nextProps.data.rows.length ||
+        this.state.rows !== nextProps.data.rows;
+      if (shouldUpdateState) {
+        const { rows, header } = nextProps;
+        const cellPerRow = header.length;
+
+        this.setState({ rows, cellPerRow });
+      }
     }
   }
 
