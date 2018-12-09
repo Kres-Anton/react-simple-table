@@ -1,0 +1,38 @@
+{
+  "name": "reaact-simple-table",
+  "version": "1.0.0",
+  "description": "Simple table for displaying data from array",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --watch",
+    "build": "webpack"
+  },
+  "keywords": [
+    "react",
+    "table"
+  ],
+  "author": "Anton Kres",
+  "license": "ISC",
+  "engines": {
+    "node": ">= 8.11.3",
+    "npm": ">= 5.6.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.2",
+    "react": "~16.4.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.0",
+    "@babel/plugin-proposal-class-properties": "^7.2.1",
+    "@babel/plugin-transform-react-jsx": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "svg-react-loader": "^0.4.6",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2"
+  }
+}
