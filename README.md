@@ -11,7 +11,7 @@ npm >= v5.6.0
 The easiest way to install react-simple-table is from [`npm`](https://www.npmjs.com/):
 
 ```sh
-npm install --save react-simple-table
+npm install --save @harallio/react-simple-table
 ```
 
 Alternately, you can download the source and build react-simple-table yourself:
@@ -127,7 +127,7 @@ npm run build
 ## Example 
 ```js
 import React, { Component } from "react";
-import ReactSimpleTable from "reaact-simple-table";
+import ReactSimpleTable from "@harallio/react-simple-table";
 
 class App extends Component {
     render() {
