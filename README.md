@@ -162,3 +162,4 @@ class App extends Component {
   }
 }
 ```
+**more example on [github](https://github.com/Kres-Anton/react-simple-table-example)**
