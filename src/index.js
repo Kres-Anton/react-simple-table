@@ -37,6 +37,7 @@ class ReactSimpleTable extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.data) {
       const shouldUpdateState =
+        !this.state.rows ||
         this.state.rows.length !== nextProps.data.rows.length ||
         this.state.rows !== nextProps.data.rows;
       if (shouldUpdateState) {
