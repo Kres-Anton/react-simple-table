@@ -1,6 +1,6 @@
 {
   "name": "@harallio/react-simple-table",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple table for displaying data from array",
   "main": "build/index.js",
   "scripts": {
@@ -15,8 +15,8 @@
   "author": "Anton Kres",
   "license": "MIT",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/Kres-Anton/react-simple-table.git"
+    "type": "git",
+    "url": "https://github.com/Kres-Anton/react-simple-table.git"
   },
   "engines": {
     "node": ">= 8.11.3",
