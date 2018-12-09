@@ -1,6 +1,6 @@
 {
   "name": "@harallio/react-simple-table",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Simple table for displaying data from array",
   "main": "build/index.js",
   "scripts": {
