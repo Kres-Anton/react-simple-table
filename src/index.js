@@ -27,8 +27,8 @@ class ReactSimpleTable extends React.Component {
 
   componentDidMount() {
     if (this.props.data) {
-      const { rows, header } = this.props.data;
-      const cellPerRow = header && header.length;
+      const { rows = [], header = [] } = this.props.data;
+      const cellPerRow = header.length;
 
       this.setState({ rows, cellPerRow });
     }
@@ -41,8 +41,8 @@ class ReactSimpleTable extends React.Component {
         this.state.rows.length !== nextProps.data.rows.length ||
         this.state.rows !== nextProps.data.rows;
       if (shouldUpdateState) {
-        const { rows, header } = nextProps;
-        const cellPerRow = header && header.length;
+        const { rows = [], header = [] } = nextProps.data;
+        const cellPerRow = header.length;
 
         this.setState({ rows, cellPerRow });
       }
