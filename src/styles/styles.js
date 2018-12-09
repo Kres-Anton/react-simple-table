@@ -41,6 +41,7 @@ export const HeaderWrapperStyle = {
 
 export const ContentWrapperStyle = {
   ...base,
+  justifyContent: "unset",
   alignSelf: "stretch",
   flexDirection: "column",
   overflowY: "auto",

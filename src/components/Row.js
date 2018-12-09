@@ -25,7 +25,7 @@ const Row = props => {
       {data.map((cell, index) => (
         <Cell
           cell={cell}
-          key={index}
+          key={index + Math.random()}
           style={cellStyle}
           rowIndex={rowIndex}
           cellIndex={index}

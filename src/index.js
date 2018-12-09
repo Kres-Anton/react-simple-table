@@ -147,7 +147,7 @@ class ReactSimpleTable extends React.Component {
       >
         {!!rows &&
           rows.map((row, index) => (
-            <React.Fragment key={index}>
+            <React.Fragment key={index + Math.random()}>
               <Row
                 data={prepaerRow(row, cellPerRow)}
                 style={rowStyle}
