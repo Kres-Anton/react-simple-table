@@ -1,120 +1,94 @@
+import styled from "styled-components";
+
 import metrics from "./metrics";
 import fonts from "./fonts";
 import colors from "./colors";
 
-const base = {
-  display: "flex",
-  flexDirection: "row",
-  backgroundColor: "tranparent",
-  justifyContent: "center",
-  alignItems: "center"
-};
+export const base = styled.div`
+  display: flex;
+  background-color: tranparent;
+  justify-content: center;
+  align-items: center;
+`;
 
-const baseWithPadding = {
-  ...base,
-  paddingTop: metrics.small,
-  paddingBottom: metrics.small,
-  paddingRight: metrics.base,
-  paddingLeft: metrics.base
-};
+export const baseWithPadding = styled(base)`
+  padding: ${metrics.small} ${metrics.base};
+`;
 
-const baseButton = {
-  padding: metrics.base,
-  color: colors.titleFont,
-  fontSize: fonts.t1,
-  border: "none",
-  outline: "none",
-  cursor: "pointer"
-};
+export const StyledBaseButton = styled.button`
+  padding: ${metrics.base};
+  color: ${colors.titleFont};
+  font-size: ${fonts.t1};
+  border: none;
+  outline: none;
+  cursor: pointer;
+`;
 
-export const TableStyle = {
-  ...base,
-  flexDirection: "column"
-};
+export const StyledCell = styled(baseWithPadding)`
+  flex: 1;
+  align-self: stretch;
+  min-height: 100%;
+  word-wrap: break-word;
+  word-break: break-all;
+`;
 
-export const HeaderWrapperStyle = {
-  ...base,
-  alignSelf: "stretch",
-  flexDirection: "column",
-  minHeight: "min-content"
-};
+export const StyledDeletCell = styled(StyledCell)`
+  flex: 0.5;
+`;
 
-export const ContentWrapperStyle = {
-  ...base,
-  justifyContent: "unset",
-  alignSelf: "stretch",
-  flexDirection: "column",
-  overflowY: "auto",
-  overflowX: "hidden"
-};
+export const DeleteButtonStyle = styled(StyledBaseButton)`
+  background-color: ${colors.devider};
+  color: ${colors.headerFont};
+`;
 
-export const RowStyle = {
-  ...base,
-  alignSelf: "stretch",
-  minHeight: "min-content",
-  fontSize: fonts.t1
-};
+export const StyledTitle = styled(baseWithPadding)`
+  align-self: stretch;
+  background-color: ${colors.titleBackground};
+  color: ${colors.titleFont};
+  font-size: ${fonts.t3};
+`;
 
-export const HeaderRowStyle = {
-  ...RowStyle,
-  fontSize: fonts.t2,
-  backgroundColor: colors.headerBackground
-};
+export const StyledTable = styled(base)`
+  flex-direction: column;
+`;
 
-export const FooterRowStyle = {
-  ...HeaderRowStyle,
-  padding: metrics.small,
-  justifyContent: "flex-start"
-};
+export const StyledHeaderWrapper = styled(base)`
+  align-self: stretch;
+  flex-direction: column;
+  min-height: min-content;
+`;
 
-export const CellStyle = {
-  ...baseWithPadding,
-  flex: 1,
-  alignSelf: "stretch",
-  minHeight: "100%",
-  wordWrap: "break-word",
-  wordBreak: "break-all"
-};
+export const StyledContentWrapper = styled(base)`
+  justify-content: unset;
+  align-self: stretch;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+`;
 
-export const TitleStyle = {
-  ...baseWithPadding,
-  alignSelf: "stretch",
-  backgroundColor: colors.titleBackground,
-  color: colors.titleFont,
-  fontSize: fonts.t3
-};
+export const StyledRow = styled(base)`
+  align-self: stretch;
+  min-height: min-content;
+  font-size: ${fonts.t1};
+`;
 
-export const DeviderStyle = {
-  width: "100%",
-  borderTopWidth: "1px",
-  borderTopColor: colors.devider,
-  opacity: 0.3,
-  margin: 0
-};
+export const StyledHeaderRow = styled(StyledRow)`
+  font-size: ${fonts.t2};
+  background-color: ${colors.headerBackground};
+`;
 
-export const AddButtonStyle = {
-  ...baseButton,
-  backgroundColor: colors.titleBackground
-};
+export const StyledFooterRow = styled(StyledHeaderRow)`
+  padding: ${metrics.small};
+  justify-content: flex-start;
+`;
 
-export const DeleteButtonStyle = {
-  ...baseButton,
-  backgroundColor: colors.devider,
-  color: colors.headerFont
-};
-
-export const DeletCellStyle = {
-  flex: 0.5
-};
-
-export const InputStyle = {
-  flexDirection: "column",
-  border: "none",
-  outline: "none",
-  resize: "none",
-  wordWrap: "break-word",
-  wordBreak: "break-all"
-};
+export const StyledDevider = styled.hr`
+  width: 100%;
+  bordertopwidth: 1px;
+  bordertopcolor: ${colors.devider};
+  opacity: 0.3;
+  margin: 0;
+`;
 
 export const LoaderContainerStyle = {
   display: "flex",

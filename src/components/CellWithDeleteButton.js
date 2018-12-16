@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { CellStyle, DeleteButtonStyle, DeletCellStyle } from "../styles/styles";
+import { StyledDeletCell, DeleteButtonStyle } from "../styles/styles";
 
 const CellWithDeleteButton = ({ style, onDelete, buttonStyle }) => (
-  <div style={{ ...CellStyle, ...DeletCellStyle, ...style }}>
-    <div onClick={onDelete} style={{ ...DeleteButtonStyle, ...buttonStyle }}>
+  <StyledDeletCell style={{ ...style }}>
+    <DeleteButtonStyle onClick={onDelete} style={{ ...buttonStyle }}>
       Delete
-    </div>
-  </div>
+    </DeleteButtonStyle>
+  </StyledDeletCell>
 );
 
 CellWithDeleteButton.propTypes = {

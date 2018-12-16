@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { TitleStyle } from "../styles/styles";
+import { StyledTitle } from "../styles/styles";
 
 const Title = ({ title, style }) => (
-  <div style={{ ...TitleStyle, ...style }}>{title}</div>
+  <StyledTitle style={{ ...style }}>{title}</StyledTitle>
 );
 Title.propTypes = {
   title: PropTypes.string,

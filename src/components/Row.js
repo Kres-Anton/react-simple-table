@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Cell from "./Cell";
 import CellWithDeleteButton from "./CellWithDeleteButton";
 
-import { RowStyle } from "../styles/styles";
+import { StyledRow } from "../styles/styles";
 
 const Row = props => {
   const {
@@ -21,7 +21,7 @@ const Row = props => {
   } = props;
 
   return (
-    <div style={{ ...RowStyle, ...style }}>
+    <StyledRow style={{ ...style }}>
       {data.map((cell, index) => (
         <Cell
           cell={cell}
@@ -40,7 +40,7 @@ const Row = props => {
           buttonStyle={deleteButtonStyle}
         />
       )}
-    </div>
+    </StyledRow>
   );
 };
 

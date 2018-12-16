@@ -4,17 +4,17 @@ import PropTypes from "prop-types";
 import { prepaerRow, getHeaderDeleteCellValue } from "./utils/helpers";
 
 import Row from "./components/Row";
+import HeaderRow from "./components/HeaderRow";
 import Title from "./components/Title";
 import AddButton from "./components/AddButton";
 import Loader from "./components/Loader";
 
 import {
-  TableStyle,
-  HeaderRowStyle,
-  DeviderStyle,
-  ContentWrapperStyle,
-  FooterRowStyle,
-  HeaderWrapperStyle
+  StyledTable,
+  StyledFooterRow,
+  StyledDevider,
+  StyledContentWrapper,
+  StyledHeaderWrapper
 } from "./styles/styles";
 
 class ReactSimpleTable extends React.Component {
@@ -83,14 +83,14 @@ class ReactSimpleTable extends React.Component {
   _renderFooter = () => {
     const { allowAdd, addButtonStyle, footerSectionStyle } = this.props;
     return (
-      <div style={FooterRowStyle}>
+      <StyledFooterRow>
         {!!allowAdd && (
           <AddButton
             onClick={this._onAddRow}
             style={{ ...addButtonStyle, ...footerSectionStyle }}
           />
         )}
-      </div>
+      </StyledFooterRow>
     );
   };
 
@@ -108,20 +108,19 @@ class ReactSimpleTable extends React.Component {
     const { header } = data;
 
     return (
-      <div style={{ ...HeaderWrapperStyle, ...headerWrapperStyle }}>
+      <StyledHeaderWrapper style={{ ...headerWrapperStyle }}>
         {!!title && <Title title={title} style={titleStyle} />}
         {!!header && (
-          <Row
+          <HeaderRow
             data={[
               ...header,
               allowDelete && getHeaderDeleteCellValue(deleteCellStyle)
             ]}
-            style={{ ...HeaderRowStyle, ...headerRowStyle }}
+            style={{ ...headerRowStyle }}
             cellStyle={headerCellStyle}
-            allowEdit={false}
           />
         )}
-      </div>
+      </StyledHeaderWrapper>
     );
   };
 
@@ -141,8 +140,8 @@ class ReactSimpleTable extends React.Component {
     }
 
     return (
-      <div
-        style={{ ...ContentWrapperStyle, ...contentWrapperStyle }}
+      <StyledContentWrapper
+        style={{ ...contentWrapperStyle }}
         ref={this.contentRef}
       >
         {!!rows &&
@@ -160,24 +159,24 @@ class ReactSimpleTable extends React.Component {
                 onEdit={this._onEdit}
                 onDelete={() => this._onDeleteRow(index, row)}
               />
-              <hr style={DeviderStyle} />
+              <StyledDevider />
             </React.Fragment>
           ))}
-      </div>
+      </StyledContentWrapper>
     );
   };
 
   render() {
     const { containerStyle, loaderStyle, loaderComponent, data } = this.props;
     return (
-      <div style={{ ...TableStyle, ...containerStyle }}>
+      <StyledTable style={{ ...containerStyle }}>
         {!!data && this._renderHeader()}
         {!!data && this._renderContent()}
         {!!data && this._renderFooter()}
         {!data && (
           <Loader style={loaderStyle} loaderComponent={loaderComponent} />
         )}
-      </div>
+      </StyledTable>
     );
   }
 }

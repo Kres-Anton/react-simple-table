@@ -1,7 +1,8 @@
 import React from "react";
+import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import { CellStyle, InputStyle } from "../styles/styles";
+import { StyledCell } from "../styles/styles";
 
 class Cell extends React.Component {
   state = {
@@ -44,22 +45,21 @@ class Cell extends React.Component {
     const { style, cell } = this.props;
     const { value, inputMode } = this.state;
     return (
-      <div
-        style={{ ...CellStyle, ...style, ...cell.cellStyle }}
+      <StyledCell
+        style={{ ...style, ...cell.cellStyle }}
         onClick={this._turnOnInputMode}
       >
         {!!inputMode ? (
-          <textarea
+          <StyledTextArea
             ref={this.inputRef}
             onChange={this._onChange}
-            style={InputStyle}
             value={value}
             onBlur={this._handleBlur}
           />
         ) : (
           value
         )}
-      </div>
+      </StyledCell>
     );
   }
 }
@@ -72,5 +72,14 @@ Cell.propTypes = {
   rowIndex: PropTypes.number,
   cellIndex: PropTypes.number
 };
+
+const StyledTextArea = styled.textarea`
+  flexdirection: "column";
+  border: "none";
+  outline: "none";
+  resize: "none";
+  wordwrap: "break-word";
+  wordbreak: "break-all";
+`;
 
 export default Cell;

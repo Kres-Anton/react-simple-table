@@ -1,5 +1,3 @@
-import { DeletCellStyle } from "../styles/styles";
-
 const _getAdditionalCell = count => Array(count).fill({ value: "" });
 
 export const prepaerRow = (row, length) => {
@@ -13,5 +11,5 @@ export const prepaerRow = (row, length) => {
 
 export const getHeaderDeleteCellValue = customStyle => ({
   value: "",
-  cellStyle: { ...DeletCellStyle, ...customStyle }
+  cellStyle: { flex: 0.5, ...customStyle }
 });
