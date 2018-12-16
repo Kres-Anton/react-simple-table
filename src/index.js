@@ -1,21 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { prepaerRow, getHeaderDeleteCellValue } from "./utils/helpers";
+import { prepaerRow } from "./utils/helpers";
 
-import Row from "./components/Row";
-import HeaderRow from "./components/HeaderRow";
-import Title from "./components/Title";
-import AddButton from "./components/AddButton";
 import Loader from "./components/Loader";
+import TableHeader from "./components/TableHeader";
+import TableFooter from "./components/TableFooter";
+import TableContent from "./components/TableContent";
 
-import {
-  StyledTable,
-  StyledFooterRow,
-  StyledDevider,
-  StyledContentWrapper,
-  StyledHeaderWrapper
-} from "./styles/styles";
+import { StyledTable } from "./styles/styles";
 
 class ReactSimpleTable extends React.Component {
   state = {
@@ -80,21 +73,7 @@ class ReactSimpleTable extends React.Component {
     });
   };
 
-  _renderFooter = () => {
-    const { allowAdd, addButtonStyle, footerSectionStyle } = this.props;
-    return (
-      <StyledFooterRow>
-        {!!allowAdd && (
-          <AddButton
-            onClick={this._onAddRow}
-            style={{ ...addButtonStyle, ...footerSectionStyle }}
-          />
-        )}
-      </StyledFooterRow>
-    );
-  };
-
-  _renderHeader = () => {
+  render() {
     const {
       data,
       title,
@@ -103,76 +82,59 @@ class ReactSimpleTable extends React.Component {
       headerCellStyle,
       headerWrapperStyle,
       allowDelete,
-      deleteCellStyle
-    } = this.props;
-    const { header } = data;
-
-    return (
-      <StyledHeaderWrapper style={{ ...headerWrapperStyle }}>
-        {!!title && <Title title={title} style={titleStyle} />}
-        {!!header && (
-          <HeaderRow
-            data={[
-              ...header,
-              allowDelete && getHeaderDeleteCellValue(deleteCellStyle)
-            ]}
-            style={{ ...headerRowStyle }}
-            cellStyle={headerCellStyle}
-          />
-        )}
-      </StyledHeaderWrapper>
-    );
-  };
-
-  _renderContent = () => {
-    const {
+      deleteCellStyle,
+      containerStyle,
+      loaderStyle,
+      loaderComponent,
+      allowAdd,
+      addButtonStyle,
+      footerSectionStyle,
+      allowEdit,
       rowStyle,
       cellStyle,
       contentWrapperStyle,
-      allowDelete,
-      deleteCellStyle,
-      deleteButtonStyle,
-      allowEdit
+      deleteButtonStyle
     } = this.props;
     const { cellPerRow, rows } = this.state;
-    if (!cellPerRow || !rows) {
-      return null;
-    }
+    const { header } = data || {};
 
-    return (
-      <StyledContentWrapper
-        style={{ ...contentWrapperStyle }}
-        ref={this.contentRef}
-      >
-        {!!rows &&
-          rows.map((row, index) => (
-            <React.Fragment key={index + Math.random()}>
-              <Row
-                data={prepaerRow(row, cellPerRow)}
-                style={rowStyle}
-                cellStyle={cellStyle}
-                allowDelete={allowDelete}
-                deleteCellStyle={deleteCellStyle}
-                deleteButtonStyle={deleteButtonStyle}
-                allowEdit={allowEdit}
-                rowIndex={index}
-                onEdit={this._onEdit}
-                onDelete={() => this._onDeleteRow(index, row)}
-              />
-              <StyledDevider />
-            </React.Fragment>
-          ))}
-      </StyledContentWrapper>
-    );
-  };
-
-  render() {
-    const { containerStyle, loaderStyle, loaderComponent, data } = this.props;
     return (
       <StyledTable style={{ ...containerStyle }}>
-        {!!data && this._renderHeader()}
-        {!!data && this._renderContent()}
-        {!!data && this._renderFooter()}
+        {!!data && (
+          <React.Fragment>
+            <TableHeader
+              title={title}
+              titleStyle={titleStyle}
+              headerRowStyle={headerRowStyle}
+              headerCellStyle={headerCellStyle}
+              headerWrapperStyle={headerWrapperStyle}
+              allowDelete={allowDelete}
+              deleteCellStyle={deleteCellStyle}
+              header={header}
+            />
+            <TableContent
+              contentRef={this.contentRef}
+              cellPerRow={cellPerRow}
+              deleteButtonStyle={deleteButtonStyle}
+              contentWrapperStyle={contentWrapperStyle}
+              cellStyle={cellStyle}
+              rowStyle={rowStyle}
+              rows={rows}
+              allowEdit={allowEdit}
+              allowDelete={allowDelete}
+              deleteCellStyle={deleteCellStyle}
+              deleteButtonStyle={deleteButtonStyle}
+              onEdit={this._onEdit}
+              onDeleteRow={this._onDeleteRow}
+            />
+            <TableFooter
+              allowAdd={allowAdd}
+              addButtonStyle={addButtonStyle}
+              footerSectionStyle={footerSectionStyle}
+              onAddRow={this._onAddRow}
+            />
+          </React.Fragment>
+        )}
         {!data && (
           <Loader style={loaderStyle} loaderComponent={loaderComponent} />
         )}
